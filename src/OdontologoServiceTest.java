@@ -2,6 +2,7 @@ import dao.DB;
 import models.Odontologo;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import services.OdontologoMemoryService;
 import services.OdontologoService;
 
 import java.util.List;
@@ -27,6 +28,22 @@ public class OdontologoServiceTest {
         odontologoService.guardarOdontologo(new Odontologo("54321ABDC", "Josmar", "Diaz"));
         List<Odontologo> odontologos = odontologoService.buscarTodos();
         assertEquals(5, odontologos.size());
+        odontologos.forEach(o -> System.out.println(o.getNombre()));
+    }
+
+    @Test
+    public void buscarTodosMemoryTest() {
+        OdontologoMemoryService odontologoMemoryService = new OdontologoMemoryService();
+        List<Odontologo> odontologos = odontologoMemoryService.Listar();
+        assertEquals(3, odontologos.size());
+    }
+
+    @Test
+    public void guardarOdontologoMemoryTest() {
+        OdontologoMemoryService odontologoMemoryService = new OdontologoMemoryService();
+        odontologoMemoryService.Guardar(new Odontologo(4,"9999", "Jorge", "Diaz"));
+        List<Odontologo> odontologos = odontologoMemoryService.Listar();
+        assertEquals(4, odontologos.size());
         odontologos.forEach(o -> System.out.println(o.getNombre()));
     }
 }
