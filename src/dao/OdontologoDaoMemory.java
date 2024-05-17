@@ -1,0 +1,28 @@
+package dao;
+
+import models.Odontologo;
+import com.sun.jdi.Value;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
+public class OdontologoDaoMemory implements IDao<Odontologo> {
+
+    private HashMap<Integer, Odontologo> Odontologos = new HashMap<Integer, Odontologo>();
+
+    @Override
+    public void guardar(Odontologo odontologo) {
+        Odontologos.put(odontologo.getId(), odontologo);
+    }
+
+    @Override
+    public List<Odontologo> buscarTodos() {
+        List<Odontologo> lista = new ArrayList<Odontologo>();
+        Odontologos.forEach((Key, Value)-> {
+            lista.add(Value);
+        });
+
+        return lista;
+    }
+}
